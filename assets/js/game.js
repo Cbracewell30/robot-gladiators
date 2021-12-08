@@ -53,6 +53,7 @@ var fight = function(enemyName) {
   
       // remove players's health by subtracting the amount set in the enemyAttack variable
       playerHealth = playerHealth - enemyAttack;
+      // Log players rmaining heatlth.
       console.log(
         enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
       );
@@ -69,11 +70,15 @@ var fight = function(enemyName) {
   };
 
 for(var i = 0; i < enemyNames.length; i++) {
+    if (playerHealth > 0) {
+        window.alert("Welcome to Robot Gladiators! Round" + (i + 1));
+    }
     // call fight function with enemy robots
     var pickedEnemyName = enemyNames[i];
     enemyHealth = 50;
     fight(pickedEnemyName);
-  }
+  
+}
 
 // Game States
 // "WIN" - Player robot has defeated all enemy-robots
