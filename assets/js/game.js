@@ -1,16 +1,20 @@
 var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 100;
+var playerHealth = 110;
 var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
 var enemyHealth = 50;
-var enemyAttack = 12;
+var enemyAttack = 5;
 
 console.log(enemyNames);
 console.log(enemyNames.length);
 console.log(enemyNames[0]);
 console.log(enemyNames[3]);
+
+// Start game function
+
+
 
 // fight function (now with parameter for enemy's name)
 var fight = function(enemyName) {
@@ -70,6 +74,15 @@ var fight = function(enemyName) {
 };
 
 // fight each enemy-robot by looping over them and fighting them one at a time
+
+//Start game function
+
+var startGame= function () {
+        // reset player stats
+        playerHealth = 100;
+        playerAttack = 10;
+        playerMoney = 10;
+  // other logic remains the same...
 for (var i = 0; i < enemyNames.length; i++) {
   // if player is still alive, keep fighting
   if (playerHealth > 0) {
@@ -88,9 +101,52 @@ for (var i = 0; i < enemyNames.length; i++) {
     // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
   }
+
+
+    
+   
+
   // if player isn't alive, stop the game
   else {
     window.alert('You have lost your robot in battle! Game Over!');
     break;
   }
+
+ 
 }
+
+endGame();
+
+  };
+
+  // function to end the entire game
+var endGame = function() {
+    window.alert("The game has now ended. Let's see how you did!");
+
+    if (playerHealth > 0) {
+    window.alert ("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+}
+    else {
+        window.alert( " You've lost your robot in battle.");
+    }
+// ask the player to restart
+    var confirmRestart = window.confirm (" Would you like to play again?");
+
+    if (confirmRestart) {
+        //restart the game
+        startGame();
+    }
+    else {
+        window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+    }
+    };
+
+
+
+//play again
+startGame();
+
+
+
+//Start the game 
+startGame();
