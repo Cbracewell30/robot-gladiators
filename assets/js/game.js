@@ -15,9 +15,8 @@ console.log(enemyNames[3]);
 // Start game function
 
 
-
 // fight function (now with parameter for enemy's name)
-var fight = function(enemyName) {
+//var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
     // ask player if they'd like to fight or run
     var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
@@ -39,12 +38,6 @@ var fight = function(enemyName) {
 
     
 
-    // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = enemyHealth - playerAttack;
-    console.log(
-      playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
-    );
-
     // check enemy's health
     if (enemyHealth <= 0) {
       window.alert(enemyName + ' has died!');
@@ -59,7 +52,9 @@ var fight = function(enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);{
+
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -80,6 +75,7 @@ var fight = function(enemyName) {
 //Start game function
 
 var startGame= function () {
+    debugger;
         // reset player stats
         playerHealth = 100;
         playerAttack = 10;
@@ -94,8 +90,21 @@ for (var i = 0; i < enemyNames.length; i++) {
     // pick new enemy to fight based on the index of the enemyNames array
     var pickedEnemyName = enemyNames[i];
 
+     // function to generate a random numeric value
+     var randomNumber = function(min, max) {
+        var value = Math.floor(Math.random() *(max - min + 1) + min );
+        return value;
+  };
+  
+      // generate random damage value based on player's attack power
+var damage = randomNumber(playerAttack - 3, playerAttack);
+
+enemyHealth = Math.max(0, enemyHealth - damage);
+    console.log(
+      playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
+    );
     // reset enemyHealth before starting new fight
-    enemyHealth = 50;
+    enemyHealth = randomNumber (); 
 
     // use debugger to pause script from running and check what's going on at that moment in the code
 
@@ -159,7 +168,7 @@ var shop = function() {
       
         // use switch to carry out action
       switch ( shopOptionPrompt) {
-      case "refill": // new case
+      case "REFILL": // new case
       case "refill":
           if (playerMoney >= 7) {
       window.alert("Refilling player's health by 20 for 7 dollars.");
