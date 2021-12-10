@@ -14,9 +14,14 @@ console.log(enemyNames[3]);
 
 // Start game function
 
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+  return value;
+ };
 
 // fight function (now with parameter for enemy's name)
-//var fight = function(enemyName) {
+var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
     // ask player if they'd like to fight or run
     var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
@@ -35,8 +40,12 @@ console.log(enemyNames[3]);
         break;
       }
     }
+// generate random damage value based on player's attack power
+    var damage = randomNumber(playerAttack - 3, playerAttack);
 
-    
+enemyHealth = Math.max(0, enemyHealth - damage);
+console.log(playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
+);
 
     // check enemy's health
     if (enemyHealth <= 0) {
@@ -52,7 +61,9 @@ console.log(enemyNames[3]);
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    var damage = randomNumber(enemyAttack - 3, enemyAttack);{
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+
+playerHealth = Math.max(0, playerHealth - damage);
 
     playerHealth = Math.max(0, playerHealth - damage);
     console.log(
@@ -68,14 +79,12 @@ console.log(enemyNames[3]);
       window.alert(playerName + ' still has ' + playerHealth + ' health left.');
     }
   }
-};
 
+};
 // fight each enemy-robot by looping over them and fighting them one at a time
 
 //Start game function
-
-var startGame= function () {
-    debugger;
+var startGame = function () {
         // reset player stats
         playerHealth = 100;
         playerAttack = 10;
@@ -92,25 +101,24 @@ for (var i = 0; i < enemyNames.length; i++) {
 
      // function to generate a random numeric value
      var randomNumber = function(min, max) {
-        var value = Math.floor(Math.random() *(max - min + 1) + min );
-        return value;
-  };
+      var value = Math.floor(Math.random() * (max - min + 1) + min);
+    
+      return value;
+     };
   
       // generate random damage value based on player's attack power
 var damage = randomNumber(playerAttack - 3, playerAttack);
 
 enemyHealth = Math.max(0, enemyHealth - damage);
-    console.log(
-      playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
-    );
+    
     // reset enemyHealth before starting new fight
-    enemyHealth = randomNumber (); 
+    enemyHealth = randomNumber(40, 60); 
 
-    // use debugger to pause script from running and check what's going on at that moment in the code
+
 
     // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
-  }
+  
 
   
   //if we're not at the last enemy in the array
@@ -122,6 +130,7 @@ enemyHealth = Math.max(0, enemyHealth - damage);
           shop();
       }
   }
+}
    
 
   // if player isn't alive, stop the game
@@ -130,14 +139,12 @@ enemyHealth = Math.max(0, enemyHealth - damage);
     break;
   }
 
- 
 }
 
+
 endGame();
-
-  };
-
-  // function to end the entire game
+};
+// function to end the entire game
 var endGame = function() {
     window.alert("The game has now ended. Let's see how you did!");
 
@@ -212,10 +219,6 @@ var shop = function() {
     }
     };
 
-//play again
-startGame();
-
-
-
 //Start the game 
+startGame();
 startGame();
