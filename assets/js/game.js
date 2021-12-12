@@ -1,5 +1,17 @@
+var getPlayerName = function () {
+  var name= "";
+  // While loop to not allow bank or null names
+  while (name === "" ||name === null) {
+    // ask player their name
+    name = window.prompt("What is your robot's name?");
+  }
+  console.log("Your robot's name is " + name);
+  return name;
+};
+
+/* GAME INFORMATION / VARIABLES */
 var playerInfo = {
-name: window.prompt("What is your robot's name?"),
+name: getPlayerName (),
 health: 100,
 attack: 10,
 money: 10,
@@ -142,7 +154,6 @@ for (var i = 0; i < enemyInfo.length; i++) {
 
         // pass the pickedenemy.name variable's value into the fight function, where it will assume the value of the enemy.name parameter
         fight(pickedEnemyObj);
-        debugger;
       
         //if we're not at the last enemy in the array
         if (playerInfo.health > 0 && i< enemyInfo.length - 1) {
